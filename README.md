@@ -1,14 +1,18 @@
-# RaspberryRobot
-Projet Tutoré IUT 2014-2015
+ï»¿# RaspberryRobot
+Projet TutorÃ© IUT 2014-2015
 
 #Description
-Module situé dans les RasperryPi de chaque robot.
-Permet la communication entre l'Application Régie et les robots :
+Module situÃ© dans les RasperryPi de chaque robot.
+
+Permet la communication entre l'Application RÃ©gie et les robots :
 - Initialisation
-- Transmission au robot des ordres de déplacement reçus de l'Application Régie
+- Transmission au robot des ordres de dÃ©placement reÃ§us de l'Application RÃ©gie
 
 #Installation
-Doit être compilé avec *LejosNXT PC Librairies*.
+Doit Ãªtre compilÃ© avec *LejosNXT PC Librairies*.
+
 Sous Eclipse, il faut exporter le programme, puis l'envoyer au RaspberryPi (via SCP, exemple WinSCP), dans le dossier */home/pi/NXT/*.
-Le RaspberryPi doit avoir les *librairies LejoxNXT* d'installées.
-Ligne de commande pour exécuter le programme : `(à venir)`
+
+Le RaspberryPi doit avoir les *librairies LejoxNXT* d'installÃ©es.
+
+Ligne de commande pour exÃ©cuter le programme : `(Ã  venir)`
