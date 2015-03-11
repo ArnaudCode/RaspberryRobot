@@ -15,4 +15,4 @@ Sous Eclipse, il faut exporter le programme, puis l'envoyer au RaspberryPi (via 
 
 Le RaspberryPi doit avoir les *librairies LejoxNXT (PC + Robot)* d'installées.
 
-Ligne de commande pour exécuter le programme : `(à venir)`
+Ligne de commande pour exécuter le programme : `/opt/leJOS/bin/nxjpc -classpath /home/pi/NXT/RaspberryRobot.jar Main`

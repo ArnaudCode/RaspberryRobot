@@ -5,6 +5,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Scanner;
 
 import org.json.JSONObject;
 
@@ -17,43 +18,58 @@ public class Main {
 	public static Socket socket;
 
 	public static void main(String[] args) {
-		connect();
+		System.out.println("Pensez a allumer le Robot Lego NXT");
 
-		try {
-			socket = new Socket("192.168.1.8", 3000);
+		if (connect()) {
+			try {
+				System.out
+						.println("Fin de l'adresse IP Appli Regie : 192.168.1.?");
 
-			PrintWriter outRegie = new PrintWriter(socket.getOutputStream());
-			
-			JSONObject json = new JSONObject();
-			json.put("idModule", "raspberryRobot");
-			json.put("action", "init");
-			
-			outRegie.println(json);
-			outRegie.flush();
-						
-			BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-			
-			System.out.println("Pret. Attente d'instructions regie");
-			String ligne = null;
-			while ((ligne = in.readLine()) != null) {
-				System.out.println(ligne);
-				commande(ligne);
+				int finIp = 0;
+				Scanner sc = new Scanner(System.in);
+
+				finIp = sc.nextInt();
+				System.out.println("Connexion a : 192.168.1." + finIp + " :3000");
+
+				socket = new Socket("192.168.1." + finIp, 3000);
+
+				PrintWriter outRegie = new PrintWriter(socket.getOutputStream());
+
+				JSONObject json = new JSONObject();
+				json.put("idModule", "raspberryRobot");
+				json.put("action", "init");
+
+				outRegie.println(json);
+				outRegie.flush();
+
+				BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+				System.out.println("Pret. Attente d'instructions regie");
+				String ligne = null;
+				while ((ligne = in.readLine()) != null) {
+					System.out.println(ligne);
+					commande(ligne);
+				}
+			} catch (Exception e) {
 			}
-		} catch (Exception e) {
 		}
 
 		disconnect();
 	}
 
-	public static void connect() {
+	public static boolean connect() {
 		link = new NXTConnector();
 
 		if (!link.connectTo("usb://")) {
 			System.out.println("\nAucun NXT trouve en USB");
+			System.out
+					.println("Erreur : le Robot Lego NXT n'est pas connecte.");
+			return false;
 		}
 
 		outRobot = new DataOutputStream(link.getOutputStream());
 		System.out.println("\nNXT connecte");
+		return true;
 	}
 
 	public static void disconnect() {
